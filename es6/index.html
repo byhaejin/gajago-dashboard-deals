@@ -51,8 +51,8 @@
     <script type="text/javascript" src="ax5modal.min.js"></script>
 
     <script type="text/javascript">
-        var _spinner = (function(){
-            var target = document.getElementById('board-container');
+        let _spinner = (function(){
+            let target = document.getElementById('board-container');
             var spinner = new Spinner({
                 lines: 9 // The number of lines to draw
                 , length: 42 // The length of each line
@@ -140,7 +140,8 @@
                 }
             }
         });
-        var _cachedDealResponse = {};
+
+        let _cachedDealResponse = {};
 
         $('.menu-tab a').bind("click",function(e){
             _cachedDealResponse = {}; // cache clear
@@ -179,10 +180,10 @@
         });
 
         /**@@@ 내주변    @@@@@@@@@@@@@@@@@@@*/
-        function loadMyAreaDeals(position) {
+        let loadMyAreaDeals = (position) => {
             if (!position) return;
 
-            var params = { lat: position.coords.latitude, lon: position.coords.longitude };
+            const params = { lat: position.coords.latitude, lon: position.coords.longitude };
             $.get('https://beta.thegajago.com/map/deals', params, function(deals){
                 _cachedDealResponse = {
                     list: deals,
@@ -213,7 +214,7 @@
         /**
          * event 보물찾기 2016-10-18
          */
-        var _root = this;
+        const _root = this;
         _root.tips = [
             "내 위치 설정을 ON하면 보물찾기가 쉬워져!",
             "SNS에 보물찾기 이벤트를 공유하면 확률이 UP!",
@@ -234,8 +235,8 @@
                     }
                 }
             }, function () {
-                var tipNum = _.random(_root.tips.length-1);
-                var templ = ''+
+                let tipNum = _.random(_root.tips.length-1);
+                let templ = ''+
                         '<div class="event event-dark">'+
                             '<button type="button" class="btn btn-close"><img alt="close" src="../images/close-light.png"></button>' +
                             '<div class="event-tip"><img alt="" src="../images/ico-treasure.png">' + _root.tips[tipNum] + '</div>' +

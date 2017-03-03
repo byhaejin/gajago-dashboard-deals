@@ -5,9 +5,9 @@
  * @param $el jQuery Element list view container
  * @param config Object config value
  */
-var ListView = function($el, config){
-    var _this = this;
-    var _config = _.merge({
+let ListView = ($el, config) => {
+    let _this = this;
+    const _config = _.merge({
         init : {
             display: true
         },
@@ -18,13 +18,13 @@ var ListView = function($el, config){
         }
     }, config);
 
-    var $listBox = $('<div class="list-box"></div>');
+    let $listBox = $('<div class="list-box"></div>');
 
     /**
      * show control
      * @param isDisplay boolean default value true.
      */
-    var baseDisplay = function(isDisplay) {
+    let baseDisplay = (isDisplay) => {
         if (isDisplay) {
             $el.show();
             if (_.isFunction(_config.event.afterShow)) {
@@ -38,15 +38,15 @@ var ListView = function($el, config){
     /**
      * rendering data
      */
-    var baseRender = function(data) {
-        var html = [
+    let baseRender = (data) => {
+         let html = [
             '<div id="list-count">',
                 '검색결과 <span class="text-count">', data.list.length, '</span>건',
             '</div>',
             '<ul>'
         ];
         _.each(data.list, function(item){
-            var imageSrc = null;
+            let imageSrc = null;
             try {
                 imageSrc = item.listImageJson.list[0].image.src
             } catch(ex) {
@@ -78,7 +78,7 @@ var ListView = function($el, config){
         baseDisplay(true);
     };
 
-    function init(){
+    let init = () => {
         $el.append($listBox);
         baseDisplay(_config.init.display);
     }

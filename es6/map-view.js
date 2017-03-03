@@ -1,8 +1,8 @@
 'use strict';
 
-var MapView = function($el, config){
-    var _this = this;
-    var _config = _.merge({
+let MapView = ($el, config) => {
+    let _this = this;
+    const  _config = _.merge({
         init : {
             display: true,
             center: {
@@ -25,20 +25,20 @@ var MapView = function($el, config){
 
 
 
-    var _markers = [];
-    var _infoWindows = [];
-    var _selectedInfoWindow;
+    let _markers = [];
+    let _infoWindows = [];
+    let _selectedInfoWindow;
 
-    var _mapId = $el.attr('id') + '-map';
-    var _map;
-    var _clusterer;
-    var _currentPosition;
+    let _mapId = $el.attr('id') + '-map';
+    let _map;
+    let _clusterer;
+    let _currentPosition;
 
     /**
      * show control
      * @param isDisplay boolean default value true.
      */
-    var baseDisplay = function(isDisplay) {
+    let baseDisplay = function(isDisplay) {
         if (isDisplay) {
             $el.show();
 
@@ -57,7 +57,7 @@ var MapView = function($el, config){
         }
     }
 
-    var baseMapAdjust = function(config){
+    let baseMapAdjust = function(config){
         if (config.center) _map.setCenter(new daum.maps.LatLng(config.lat, config.lon));
         if (config.level)  _map.setLevel(config.level);
     }
@@ -65,7 +65,7 @@ var MapView = function($el, config){
     /**
      * rendering data
      */
-    var baseRender = function(data) {
+    let baseRender = function(data) {
         _map.setLevel(_config.init.level);
         _map.setCenter(new daum.maps.LatLng(data.centerLat, data.centerLon)); //중심변경
         _map.setDraggable(true);
@@ -107,8 +107,8 @@ var MapView = function($el, config){
                 var selectedMarkerImage = new daum.maps.MarkerImage(images['SEL'], new daum.maps.Size(40, 42));
                 marker.setImage(selectedMarkerImage);
 
-                var item = marker.data;
-                var imageSrc = null;
+                let item = marker.data;
+                let imageSrc = null;
                 try {
                     imageSrc = item.listImageJson.list[0].image.src
                 } catch(ex) {
@@ -117,7 +117,7 @@ var MapView = function($el, config){
 
                 if (imageSrc === null) return;
 
-                var html = [];
+                let html = [];
                 html.push('<div class="map-info-window">');
                 html.push('<div class="thumb" style="background-image: url(', imageSrc, ');">',
                                 '<a href="https://www.thegajago.com/deals/', item.id, '" target="_new" style="display:block;height:100%;"></a></div>');
@@ -153,7 +153,7 @@ var MapView = function($el, config){
     /**
      * event 보물찾기 2016-10-18
      */
-    var _root = this;
+    let _root = this;
     _root.tips = [
         "내 위치 설정을 ON하면 보물찾기가 쉬워져!",
         "SNS에 보물찾기 이벤트를 공유하면 확률이 UP!",
@@ -162,8 +162,8 @@ var MapView = function($el, config){
     ]
     var modal = new ax5.ui.modal();
     var mask = new ax5.ui.mask();
-    var eventChk = function () {
-        var html = '<div class="event-view">';
+    let eventChk = () => {
+        let html = '<div class="event-view">';
         $.get('http://220.70.71.58:10391/events/hunt' + location.search, function(data){
             // console.log("data",data)
             // data = {
@@ -188,7 +188,9 @@ var MapView = function($el, config){
                 html += '<button type="button" class="btn btn-link btn-tip">힌트보러가기</button>'
             };
             html += '</div>';
+
             mask.open();
+
             modal.open({
                 width:320,
                 height:400,
@@ -213,12 +215,10 @@ var MapView = function($el, config){
                     mask.close();
                 });
 
-
-
                 //힌트보기
                 $('.btn-tip').click(function(){
-                    var tipNum = _.random(_root.tips.length-1);
-                    var templ = ''+
+                    let tipNum = _.random(_root.tips.length-1);
+                    let templ = ''+
                         '<div class="event event-dark">'+
                         '<button type="button" class="btn btn-close"><img alt="close" src="../images/close-light.png"></button>' +
                         '<div class="event-tip"><img alt="" src="../images/ico-treasure.png">' + _root.tips[tipNum] + '</div>' +
@@ -243,7 +243,7 @@ var MapView = function($el, config){
      * geolocation API는 비동기로 작동합니다.
      * 원하는 액션은 callback 함수를 사용하세요.
      */
-    var baseGetCurrentPosition = function(callback) {
+    let baseGetCurrentPosition = (callback) => {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 (function(position){
@@ -269,7 +269,7 @@ var MapView = function($el, config){
         return _currentPosition;
     }
 
-    var actions = {
+    const actions = {
         'zoom-in': function(){
             _map.setLevel(_map.getLevel() - 1);
         },
@@ -297,8 +297,8 @@ var MapView = function($el, config){
     };
 
     // init
-    var init = function(){
-        var html = [
+    let init = () => {
+        let html = [
             '<div class="map_wrap">',
                 '<div id="', _mapId, '" style="height:400px;"></div>',
                 '<div class="custom_typecontrol radius_border">',
