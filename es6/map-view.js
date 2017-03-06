@@ -1,8 +1,8 @@
 'use strict';
 
-let MapView = ($el, config) => {
-    let _this = this;
-    const  _config = _.merge({
+const MapView = ($el, config) => {
+    const _this = this;
+    const _config = _.merge({
         init : {
             display: true,
             center: {
@@ -11,11 +11,11 @@ let MapView = ($el, config) => {
             },
             level: 11
         },
-        fit : function(){
+        fit : () => {
             console.log('MapView.config.event.fit is empty function.');
         },
         event: {
-            afterShow: function(){
+            afterShow: () => {
                 console.log('MapView.config.event.afterShow is empty function.');
             }
         }
@@ -38,7 +38,7 @@ let MapView = ($el, config) => {
      * show control
      * @param isDisplay boolean default value true.
      */
-    let baseDisplay = function(isDisplay) {
+    const baseDisplay = (isDisplay) => {
         if (isDisplay) {
             $el.show();
 
@@ -57,7 +57,7 @@ let MapView = ($el, config) => {
         }
     }
 
-    let baseMapAdjust = function(config){
+    const baseMapAdjust = (config) => {
         if (config.center) _map.setCenter(new daum.maps.LatLng(config.lat, config.lon));
         if (config.level)  _map.setLevel(config.level);
     }
@@ -65,7 +65,7 @@ let MapView = ($el, config) => {
     /**
      * rendering data
      */
-    let baseRender = function(data) {
+    const baseRender = (data) => {
         _map.setLevel(_config.init.level);
         _map.setCenter(new daum.maps.LatLng(data.centerLat, data.centerLon)); //중심변경
         _map.setDraggable(true);
@@ -85,13 +85,13 @@ let MapView = ($el, config) => {
 
         //메뉴 마커 붙이기
         _.each(data.list, function(deal){
-            var images = {
+            let images = {
                 'HOTEL': 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/hotel-v1.png',
                 'DEAL' : 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/leisure-v1.png',
                 'SEL'  : 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/gajago-pin.png'
             };
-            var dealPosition = new daum.maps.LatLng(deal.lat, deal.lon);
-            var marker = new daum.maps.Marker({
+            const dealPosition = new daum.maps.LatLng(deal.lat, deal.lon);
+            const marker = new daum.maps.Marker({
                 'position': dealPosition,
                 'title'   : deal.dealNm,
                 'image'   : new daum.maps.MarkerImage(images[deal.dealType], new daum.maps.Size(40, 42))
@@ -104,7 +104,7 @@ let MapView = ($el, config) => {
             daum.maps.event.addListener(marker, 'click', function() {
                 if (_selectedInfoWindow instanceof jQuery) _selectedInfoWindow.remove();
 
-                var selectedMarkerImage = new daum.maps.MarkerImage(images['SEL'], new daum.maps.Size(40, 42));
+                let selectedMarkerImage = new daum.maps.MarkerImage(images['SEL'], new daum.maps.Size(40, 42));
                 marker.setImage(selectedMarkerImage);
 
                 let item = marker.data;
@@ -153,7 +153,7 @@ let MapView = ($el, config) => {
     /**
      * event 보물찾기 2016-10-18
      */
-    let _root = this;
+    var _root = this;
     _root.tips = [
         "내 위치 설정을 ON하면 보물찾기가 쉬워져!",
         "SNS에 보물찾기 이벤트를 공유하면 확률이 UP!",
@@ -162,8 +162,8 @@ let MapView = ($el, config) => {
     ]
     var modal = new ax5.ui.modal();
     var mask = new ax5.ui.mask();
-    let eventChk = () => {
-        let html = '<div class="event-view">';
+    var eventChk = function () {
+        var html = '<div class="event-view">';
         $.get('http://220.70.71.58:10391/events/hunt' + location.search, function(data){
             // console.log("data",data)
             // data = {
@@ -188,9 +188,7 @@ let MapView = ($el, config) => {
                 html += '<button type="button" class="btn btn-link btn-tip">힌트보러가기</button>'
             };
             html += '</div>';
-
             mask.open();
-
             modal.open({
                 width:320,
                 height:400,
@@ -215,10 +213,12 @@ let MapView = ($el, config) => {
                     mask.close();
                 });
 
+
+
                 //힌트보기
                 $('.btn-tip').click(function(){
-                    let tipNum = _.random(_root.tips.length-1);
-                    let templ = ''+
+                    var tipNum = _.random(_root.tips.length-1);
+                    var templ = ''+
                         '<div class="event event-dark">'+
                         '<button type="button" class="btn btn-close"><img alt="close" src="../images/close-light.png"></button>' +
                         '<div class="event-tip"><img alt="" src="../images/ico-treasure.png">' + _root.tips[tipNum] + '</div>' +
@@ -243,7 +243,7 @@ let MapView = ($el, config) => {
      * geolocation API는 비동기로 작동합니다.
      * 원하는 액션은 callback 함수를 사용하세요.
      */
-    let baseGetCurrentPosition = (callback) => {
+    const baseGetCurrentPosition = (callback) => {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 (function(position){
@@ -255,7 +255,7 @@ let MapView = ($el, config) => {
             }, function (err) {
                 alert('사용자 위치를 사용할 수 없습니다.\n위치사용을 허용해주시면 보다 나은 서비스를 이용하실 수 있습니다.\n-- 서울을 기본으로 검색합니다. --');
                 if (_.isFunction(callback)) {
-                    var defaultPosition = {
+                    let defaultPosition = {
                         coords: {
                             latitude: 37.56681519476317,
                             longitude: 126.97866358044901
@@ -270,13 +270,13 @@ let MapView = ($el, config) => {
     }
 
     const actions = {
-        'zoom-in': function(){
+        'zoom-in': () => {
             _map.setLevel(_map.getLevel() - 1);
         },
-        'zoom-out': function(){
+        'zoom-out': () =>{
             _map.setLevel(_map.getLevel() + 1);
         },
-        'map-to-roadmap': function(){
+        'map-to-roadmap': () => {
             _map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);
             $(this)
                 .addClass('selected-btn')
@@ -285,7 +285,7 @@ let MapView = ($el, config) => {
                 .addClass('map-btn')
                 .removeClass('selected-btn');
         },
-        'map-to-skyview': function(){
+        'map-to-skyview': () => {
             _map.setMapTypeId(daum.maps.MapTypeId.HYBRID);
             $(this)
                 .addClass('selected-btn')
@@ -297,7 +297,7 @@ let MapView = ($el, config) => {
     };
 
     // init
-    let init = () => {
+    const init = () => {
         let html = [
             '<div class="map_wrap">',
                 '<div id="', _mapId, '" style="height:400px;"></div>',

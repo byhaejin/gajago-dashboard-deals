@@ -5,7 +5,7 @@
  * @param $el jQuery Element list view container
  * @param config Object config value
  */
-const FilterView = ($el, config) => {
+const FilterView = ($el, config) =>{
     const _config = _.merge({
         init : {
             display: true
@@ -17,9 +17,9 @@ const FilterView = ($el, config) => {
         }
     }, config);
 
-    let  _this  = this;
-    let $menu1 = $('<li class="depth1menu"></li>');
-    let $menu2 = $('<li class="depth2menu"></li>');
+    const _this  = this;
+    const $menu1 = $('<li class="depth1menu"></li>');
+    const $menu2 = $('<li class="depth2menu"></li>');
     const _menus = [
         {
             "fullCode": "01",
@@ -201,16 +201,16 @@ const FilterView = ($el, config) => {
         }
     ];
 
-    let appendMenu1 = () => {
+    const appendMenu1 = () => {
         let html = ['<ul>'];
         _.each(_menus, function(menu1){
             html.push('<li><a class="depth1menu-cell" data-href="'+ menu1.fullCode+'">'+ menu1.name +'</a></li>');
         });
         html.push('</ul>');
-        $menu1.append(html);// join???
+        $menu1.append(html);
     }
 
-    let appendMenu2 = (parentFullCode) => {
+    const appendMenu2 = (parentFullCode) => {
         let html = ['<ul>'];
         let menu1 = _.find(_menus, { fullCode: parentFullCode });
         _.each(menu1.children, function(menu2){
@@ -225,7 +225,7 @@ const FilterView = ($el, config) => {
      * show control
      * @param isDisplay boolean default value true.
      */
-    let baseDisplay = (isDisplay) => {
+    const baseDisplay = (isDisplay) => {
         if (isDisplay) {
             $el.show();
         } else {
@@ -234,7 +234,7 @@ const FilterView = ($el, config) => {
     };
 
     // init
-    let init = () => {
+    const init = () => {
         let html = [
             '<div class="filter-box-msg">원하시는 지역을 선택하세요</div>',
             '<ul class="menu"></ul>'
