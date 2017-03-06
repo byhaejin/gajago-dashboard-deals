@@ -5,13 +5,13 @@
  * @param $el jQuery Element list view container
  * @param config Object config value
  */
-const FilterView = ($el, config) =>{
+const FilterView = function($el, config){
     const _config = _.merge({
         init : {
             display: true
         },
         event: {
-            select: () => {
+            select: function() {
                 console.log('FilterView.config.event.select is empty function.');
             }
         }
@@ -250,7 +250,7 @@ const FilterView = ($el, config) =>{
             $el.find('.depth1menu li').removeClass('active');
             $(this).parent().addClass('active');
 
-            var code = $(this).attr('data-href');
+            const code = $(this).attr('data-href');
             appendMenu2(code);
 
             e.preventDefault();

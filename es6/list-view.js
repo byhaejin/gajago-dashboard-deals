@@ -5,14 +5,14 @@
  * @param $el jQuery Element list view container
  * @param config Object config value
  */
-const ListView = ($el, config) => {
+const ListView = function($el, config){
     const _this = this;
     const _config = _.merge({
         init : {
             display: true
         },
         event: {
-            afterShow: () => {
+            afterShow: function(){
                 console.log('ListView.config.event.show is empty function.');
             }
         }
@@ -38,10 +38,10 @@ const ListView = ($el, config) => {
     /**
      * rendering data
      */
-    const baseRender = (data) => {
+    const baseRender = (data) =>  {
         let html = [
             '<div id="list-count">',
-                '검색결과 <span class="text-count">', data.list.length, '</span>건',
+            '검색결과 <span class="text-count">', data.list.length, '</span>건',
             '</div>',
             '<ul>'
         ];

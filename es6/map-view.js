@@ -1,6 +1,6 @@
 'use strict';
 
-const MapView = ($el, config) => {
+const MapView = function($el, config){
     const _this = this;
     const _config = _.merge({
         init : {
@@ -11,11 +11,11 @@ const MapView = ($el, config) => {
             },
             level: 11
         },
-        fit : () => {
+        fit : function(){
             console.log('MapView.config.event.fit is empty function.');
         },
         event: {
-            afterShow: () => {
+            afterShow: function(){
                 console.log('MapView.config.event.afterShow is empty function.');
             }
         }
@@ -85,7 +85,7 @@ const MapView = ($el, config) => {
 
         //메뉴 마커 붙이기
         _.each(data.list, function(deal){
-            let images = {
+            const images = {
                 'HOTEL': 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/hotel-v1.png',
                 'DEAL' : 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/leisure-v1.png',
                 'SEL'  : 'https://s3.ap-northeast-2.amazonaws.com/production-gajago-static/images/map-pins/gajago-pin.png'
@@ -104,11 +104,11 @@ const MapView = ($el, config) => {
             daum.maps.event.addListener(marker, 'click', function() {
                 if (_selectedInfoWindow instanceof jQuery) _selectedInfoWindow.remove();
 
-                let selectedMarkerImage = new daum.maps.MarkerImage(images['SEL'], new daum.maps.Size(40, 42));
+                var selectedMarkerImage = new daum.maps.MarkerImage(images['SEL'], new daum.maps.Size(40, 42));
                 marker.setImage(selectedMarkerImage);
 
-                let item = marker.data;
-                let imageSrc = null;
+                var item = marker.data;
+                var imageSrc = null;
                 try {
                     imageSrc = item.listImageJson.list[0].image.src
                 } catch(ex) {
@@ -117,10 +117,10 @@ const MapView = ($el, config) => {
 
                 if (imageSrc === null) return;
 
-                let html = [];
+                var html = [];
                 html.push('<div class="map-info-window">');
                 html.push('<div class="thumb" style="background-image: url(', imageSrc, ');">',
-                                '<a href="https://www.thegajago.com/deals/', item.id, '" target="_new" style="display:block;height:100%;"></a></div>');
+                    '<a href="https://www.thegajago.com/deals/', item.id, '" target="_new" style="display:block;height:100%;"></a></div>');
                 html.push('<p class="ellipsis"><a class="deal-name" href="https://www.thegajago.com/deals/', item.id, '" target="_new">', item.dealNm, '</a></p>');
                 if (item.dealPointDesc) {
                     html.push('<p class="deal-desc ellipsis">', item.dealPointDesc, '</p>');
@@ -255,7 +255,7 @@ const MapView = ($el, config) => {
             }, function (err) {
                 alert('사용자 위치를 사용할 수 없습니다.\n위치사용을 허용해주시면 보다 나은 서비스를 이용하실 수 있습니다.\n-- 서울을 기본으로 검색합니다. --');
                 if (_.isFunction(callback)) {
-                    let defaultPosition = {
+                    var defaultPosition = {
                         coords: {
                             latitude: 37.56681519476317,
                             longitude: 126.97866358044901
@@ -270,13 +270,13 @@ const MapView = ($el, config) => {
     }
 
     const actions = {
-        'zoom-in': () => {
+        'zoom-in': function(){
             _map.setLevel(_map.getLevel() - 1);
         },
-        'zoom-out': () =>{
+        'zoom-out': function(){
             _map.setLevel(_map.getLevel() + 1);
         },
-        'map-to-roadmap': () => {
+        'map-to-roadmap': function(){
             _map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);
             $(this)
                 .addClass('selected-btn')
@@ -285,7 +285,7 @@ const MapView = ($el, config) => {
                 .addClass('map-btn')
                 .removeClass('selected-btn');
         },
-        'map-to-skyview': () => {
+        'map-to-skyview': function(){
             _map.setMapTypeId(daum.maps.MapTypeId.HYBRID);
             $(this)
                 .addClass('selected-btn')
@@ -297,18 +297,18 @@ const MapView = ($el, config) => {
     };
 
     // init
-    const init = () => {
-        let html = [
+    const init = function(){
+        const html = [
             '<div class="map_wrap">',
-                '<div id="', _mapId, '" style="height:400px;"></div>',
-                '<div class="custom_typecontrol radius_border">',
-                    '<span data-action="map-to-roadmap" class="selected-btn">지도</span>',
-                    '<span data-action="map-to-skyview" class="map-btn">스카이뷰</span>',
-                '</div>',
-                '<div class="custom_zoomcontrol radius_border">',
-                    '<span data-action="zoom-in" ><img src="https://i1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"  alt="확대"></span>',
-                    '<span data-action="zoom-out"><img src="https://i1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>',
-                '</div>',
+            '<div id="', _mapId, '" style="height:400px;"></div>',
+            '<div class="custom_typecontrol radius_border">',
+            '<span data-action="map-to-roadmap" class="selected-btn">지도</span>',
+            '<span data-action="map-to-skyview" class="map-btn">스카이뷰</span>',
+            '</div>',
+            '<div class="custom_zoomcontrol radius_border">',
+            '<span data-action="zoom-in" ><img src="https://i1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"  alt="확대"></span>',
+            '<span data-action="zoom-out"><img src="https://i1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>',
+            '</div>',
             '</div>'
         ];
         $el.append(html.join(''));
