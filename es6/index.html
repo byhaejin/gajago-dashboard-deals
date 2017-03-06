@@ -109,8 +109,8 @@
                     $('#btn-show-map').hide();
                 },
                 fit: () => {
-                    var fullHeight = $('body').innerHeight();
-                    var siblingsHeight = $('header').outerHeight();
+                    const fullHeight = $('body').innerHeight();
+                    const siblingsHeight = $('header').outerHeight();
 
                     return {
                         width: $('body').width(),
@@ -130,7 +130,7 @@
             event: {
                 select: (e) => {
                     _spinner.spin();
-                    var code = $(e.target).attr('data-href');
+                    const code = $(e.target).attr('data-href');
                     $.get('https://beta.thegajago.com/map/region/' + code, function(deals){
                         _cachedDealResponse = deals;
                         _mapView.render(_cachedDealResponse);
