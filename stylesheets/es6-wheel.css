@@ -1,0 +1,356 @@
+html,body { height:100%; }
+* { -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+.ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+
+ul {list-style: none;}
+ul,li { padding: 0; margin: 0}
+a:hover, a:active { text-decoration:none }
+ul.LBox		{ padding:0; border:0;}
+.LBox:after	{ content:" "; display:block; clear:both;}
+.LBox > li	{ float:left; padding:0; border:0;}
+.LBox > li.li_R	{ float:right; }
+.none { display:none }
+
+.WP100 {
+    width: 100%;
+}
+
+/*tab*/
+.menu-tab { margin-bottom: -1px }
+.menu-tab li {
+    display: block;
+    width:50%;
+    padding: 0.8em 0;
+    box-sizing: content-box;
+    background-color:#FFF;
+}
+.menu-tab li.active { border-bottom:4px solid #1F93FF; color: #1F93FF;}
+.menu-tab a {
+    display: block;
+    width: 100%;
+    text-align: center; border-bottom:#1F93FF;
+}
+
+/*layout*/
+.header {
+    padding: 0; margin: 0;
+    text-align: center;
+    background-color:#FFF;
+}
+.header-title { margin: 0; padding:0.2em; font-size:1.5em; color:#FFF; text-align: center; background:#1F93FF }
+.header-logo {
+    border-bottom: 1px solid #D8D8D8;
+}
+.header-logo img {
+    height: 50px;
+}
+
+/*filter-box ui*/
+.menu { display:table;    width:100%; height:100%;    margin: 0 auto; text-align: left; border-bottom:1px solid #D8D8D8; }
+.menu > li { display:table-cell; padding: 0; margin: 0; text-align: center; }
+.menu a { display: block; padding: 1em 0; }
+.filter-box-msg {    margin-top:-2px; padding:0.8em 0;    color:#FFF;     text-align: center; background:#9F9F9F }
+.depth1menu {
+    width:40%;
+    padding: 0.5em 0.1em;
+    border-right:1px solid #D8D8D8;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.depth1menu a { height: auto; color:#FFF; background-color:#3BABA4  }
+.depth1menu a:hover { background-color:#3BABA4 }
+.depth1menu .active a { color:#FFF; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); background-color:#1F93FF}
+
+.depth2menu {
+    width:60%;
+    background: #F2F2F2;
+}
+.depth2menu li { padding: 0 1.5em; text-align: left }
+.depth2menu a {
+    color: #8A8A8A;
+    border-bottom:1px solid #D0D0D0 ;
+}
+.depth2menu li:hover,.depth2menu li:active {
+    background: #DFDFDF;
+}
+.depth2menu li:hover a,.depth2menu li:active a {    color: #000}
+
+
+    /*map */
+.map_wrap {position:relative;overflow:hidden;margin:0 }
+.radius_border{border:1px solid #919191;border-radius:5px;}
+.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;box-sizing:content-box;}
+.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+.custom_typecontrol .map-btn {background:#fff;background:linear-gradient(#fff,    #e6e6e6);}
+.custom_typecontrol .map-btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+.custom_typecontrol .map-btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}
+.custom_typecontrol .selected-btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+.custom_typecontrol .selected-btn:hover {color:#fff;}
+.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;}
+.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}
+.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;box-sizing:content-box;}
+.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
+
+#list-count {
+    padding: 10px;
+    background-color: transparent;
+}
+
+.list-box {
+    background-color: #efefef;
+    border-bottom: 1px solid white;
+}
+
+.list-box ul {
+    border-top: 1px solid white;
+    background-color: transparent;
+}
+
+.list-box li {
+    clear: both;
+    overflow: auto;
+    margin-bottom: 6px;
+    background-color: white;
+    box-shadow: 2px 2px 6px gray;
+}
+
+.list-box li .thumb {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+    border-radius: 0px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #eee;
+    overflow: hidden;
+    float: left;
+    margin-right: 12px;
+}
+
+.list-box li .deal-name,
+.list-box li .deal-desc,
+.list-box li .deal-distance,
+.list-box li .deal-price {
+    margin: 0;
+}
+
+.list-box li .deal-name {
+    margin-top: 8px;
+}
+
+.list-box li .deal-desc {
+    font-size: 14px;
+}
+
+.list-box li .deal-distance {
+    font-size: 14px;
+    color: #c7c7c7;
+    float: left;
+}
+
+.list-box li .deal-price {
+    font-size: 14px;
+    color: #FF5565;
+    text-align: right;
+}
+
+.control-btn {
+    width: 52px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+.control-btn button {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius:50%;
+    background-repeat:no-repeat ;
+    background-position: center center;
+    background-size: cover;
+    background-color: transparent;
+}
+#btn-show-list {
+    background-image: url(../images/btn-circle-list.png);
+}
+#btn-show-map {
+    background-image: url(../images/btn-circle-map.png);
+}
+#btn-event-tip {
+    background-image: url(../images/btn-event-tip.png);
+}
+
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+}
+
+.map-info-window {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 6px;
+    z-index: 100;
+}
+
+.map-info-window .thumb {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+    border-radius: 0px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #eee;
+    overflow: hidden;
+    float: left;
+    margin-right: 12px;
+}
+
+.map-info-window .deal-name,
+.map-info-window .deal-desc,
+.map-info-window .deal-distance,
+.map-info-window .deal-price {
+    margin: 0;
+}
+
+.map-info-window .deal-name {
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.map-info-window .deal-desc {
+    font-size: 14px;
+}
+
+.map-info-window .deal-distance {
+    font-size: 14px;
+    color: #c7c7c7;
+}
+
+.map-info-window .deal-price {
+    font-size: 14px;
+    color: #FF5565;
+}
+
+
+/** event */
+
+.event {
+    position: relative;
+    width:100%;
+    height:400px;
+    padding-top:15px;
+    background: #FEC441;
+}
+.event-dark {
+    background: #2B2B2B;
+    padding-top:2.5em ;
+}
+.event-contents {
+    width: 90%;
+    height:370px;
+    margin: 0 auto;
+    border:1px solid #FFE39E;
+}
+.event-tip {
+    position:relative ;
+    width:80%;
+    margin: 0 auto;
+    margin-bottom:1em ;
+    padding:2em 1.5em ;
+    border:1px solid #FFF;
+    color:#FFF;
+    font-size:1.2em;
+    text-align: center;
+}
+.event-tip img {
+    position: absolute;
+    top:-1em; left:-1em ;
+}
+.event-links {
+    width:100%;
+}
+.event-view {
+    width:95%;
+    margin: 0 auto;
+}
+.event-view img {
+    width : 100%;
+}
+.event-view p {
+    padding:3em 0 ;
+}
+.btn-tip {
+    display: block;
+    width:80%;
+    margin:0 auto !important;
+    margin-top:10px !important;
+    border-radius:2em;
+    color:#000;
+    font-size:1.2em;
+    background:#FEC441;
+}
+.btn-link {
+    display: block;
+    width:80%;
+    margin:0 auto !important;
+    margin-top:10px !important;
+    border-radius:0;
+    color:#FFF;
+    font-size:1.2em;
+    background-color:#161616;
+}
+.btn-link:hover,.btn-tip:hover {
+    color:#445670;
+    background-color:#e8aa03;
+}
+
+.btn-close {
+    position: absolute;
+    display: inline-block;
+    width:30px;
+    height:30px;
+    top:2px;
+    right:1px;
+    padding:0;
+    cursor:pointer;
+    border:0 ;
+    background: transparent;
+}
+
+
+/** wheel **/
+#wheel-view {
+    padding: 20px;
+}
+#wheels li {
+    display: inline-block;
+    width: 50%;
+}
+
+#wheel {
+    position: relative;
+}
+#canvas {
+    width: 100%;
+    background: transparent;
+}
+
+/* ax5modal */
+.ax5modal {
+    border:0;
+    border-radius:0 ;
+}
