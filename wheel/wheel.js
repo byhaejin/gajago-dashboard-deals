@@ -279,56 +279,39 @@ class Roulette {
 
         wheel.update();
     }
+
+    /** 룰렛 목록 생성 */
     makeList () {
         var _this = this;
 
         const wheelListContainer = this.config.wheelListContainer;
 
-        $.each(config.data, function(key, item) {
+        $.each(_this.config.data, function(key, item) {
              var tmpl = '<li>' +
-                        '<input type="text" id="wheel-'+ key +">'+
-                    '</li>'
-
+                            '<input type="checkbox" id="wheel-'+ key +'" name="'+item+'" value="'+item+'" checked>'+
+                            '<label for="wheel-'+key+'">'+item+'</label>'+
+                        '</li>';
+            wheelListContainer.append(tmpl);
         });
+        $(wheelListContainer).find('input').change( function() {
+            _this.listChageEvent($(this)[0]);
+        });
+    }
 
-// //
-//     /** 룰렛 리스트 */
-//     $(function() {
-//     $.each(config.data, function(key, item) {
-//         wheelListContainer.append(
-//             $(document.createElement("li"))
-//                 .append(
-//                     $(document.createElement("input")).attr({
-//                         id:    'wheel-' + key
-//                         ,name:  item
-//                         ,value: item
-//                         ,type:  'checkbox'
-//                         ,checked:true
-//                     })
-//                         .change( function() {
-//                             const cbox = $(this)[0];
-//                             const segments = wheel.segments;
-//                             const i = segments.indexOf(cbox.value);
-//
-//                             if (cbox.checked && i == -1) {
-//                                 segments.push(cbox.value);
-//
-//                             } else if ( !cbox.checked && i != -1 ) {
-//                                 segments.splice(i, 1);
-//                             }
-//
-//                             segments.sort();
-//                             wheel.update();
-//                         } )
-//
-//                 ).append(
-//                 $(document.createElement('label')).attr({
-//                     'for':  'wheel-' + key
-//                 })
-//                     .text( item )
-//             )
-//         );
-//     });
-// });
+    /** 룰렛 목록 활성/비활성화 */
+    listChageEvent (target) {
+        const cbox = target;
+        const segments = this.wheel.segments;
+        const i = segments.indexOf(cbox.value);
+
+        if (cbox.checked && i == -1) {
+            segments.push(cbox.value);
+
+        } else if ( !cbox.checked && i != -1 ) {
+            segments.splice(i, 1);
+        }
+
+        segments.sort();
+        this.wheel.update();
     }
 }

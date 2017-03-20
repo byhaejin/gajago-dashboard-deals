@@ -36,6 +36,12 @@ ul.LBox		{ padding:0; border:0;}
 }
 
 /*layout*/
+#board-container {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    border: 1px solid #eaeaea;
+}
 .header {
     padding: 0; margin: 0;
     text-align: center;

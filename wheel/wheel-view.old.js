@@ -1,15 +1,17 @@
 'use strict';
 
 const WheelView = function($el, config){
-    const _this = this;
     const _config = _.merge({
         init : {
             display: true
         },
         event: {
-
+            select: function() {
+                console.log('WheelView.config.event.select is empty function.');
+            }
         }
     }, config);
+
 
     /** wheel constorl */
     const wheelList = {
@@ -32,34 +34,25 @@ const WheelView = function($el, config){
         "17"   : "스파/온천"
     }
 
-    let _checkWheelStatus = false;
     const wheelConfig = {
         data : wheelList,
         wheelListContainer : $('#wheels ul'),
         targetCanvas : $('#wheel #canvas').get(0),
         wheelClick : function () {
-            _checkWheelStatus = false;
-            $("#wheelToMap").html('뭐가 될까요? 두근두근');
+            $("#counter").html('뭐가 될까요? 두근두근');
         },
         finished : function(idx) {
-            _checkWheelStatus = true;
-            $("#wheelToMap").html(wheel.getSegments(idx) + ' 지도로 확인');
+            console.log("idx",idx);
+            $("#counter").html(wheel.getSegments(idx) + ' 지도로 확인');
         }
     }
 
-    const wheel = new Roulette(wheelConfig);
-    this._wheel = wheel;
-    //const wheelToMap = ( Fn ) => {
-        $('#board-container').on("click",'#wheelToMap',function(e){
-            console.log("_checkWheelStatus",_checkWheelStatus);
-            if(_checkWheelStatus) {
-                //Fn();
-            } else {
+    $(".content").on("#counter","click",function(e){
 
-                _this._wheel.wheel.spin();
-            }
-        });
-    //}
+    });
+
+
+    const wheel = new Roulette(wheelConfig);
 
     /**
      * show control
@@ -72,6 +65,8 @@ const WheelView = function($el, config){
             $el.hide();
         }
     }
+
+
 
     return {
         'display': baseDisplay
