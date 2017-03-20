@@ -1,0 +1,57 @@
+<script type="text/html" data-gajago-tmpl="USER-OPTION">
+    <h4>구매 필수정보 <small>(구매/예약 시 필요)</small></h4>
+    <hr>
+    <div class="form-item noPd">
+        <table class="h5 noMg">
+            <colgroup>
+                <col width="90" />
+                <col />
+                <col width="60" />
+            </colgroup>
+            <tr>
+                <th class="label align-left">성명</th>
+                <td colspan="2" class="value">
+                    <input type="text" data-id="payUserName" name="payUserName" class="form-control input-lg" data-validate-msg="이름을 입력해주세요" maxlength="20" value="" data-ax-path="payUserName" data-ax-validate="required" placeholder="이름을 입력해주세요"/>
+                </td>
+            </tr>
+            <tr>
+                <th  class="label noBd align-left">휴대폰번호</th>
+                <td class="value" colspan="2">
+                    <input type="tel" data-id="payUserHpNo" name="payUserHpNo" class="form-control input-lg" data-validate-msg="핸드폰번호를 입력해주세요" value="" data-ax-path="payUserHpNo" data-ax-validate="required" placeholder="'-'를 제외하고 입력" />
+                </td>
+            </tr>
+            <tr>
+                <th class="label noBd align-left "></th>
+                <td class="value" colspan="2">
+                    <button type="button" class="ax-btn btn btn-info btn-lg" id="request-auth-no">인증번호 요청하기</button>
+                </td>
+            </tr>
+            <tr>
+                <th class="label noBd align-left">인증번호</th>
+                <td class="value noBd">
+                    <input type="tel" id="order-new-payUserHpNo-authcode" name="authCode" class="form-control input-lg" placeholder="인증번호 입력" />
+                </td>
+                <td class="noBd">
+                    <button type="button" class="ax-btn btn btn-info btn-lg form" id="btn-payUserHpNo-input-save">인증</button>
+                </td>
+            </tr>
+            <tr>
+                <th class="label noBd  align-left">&nbsp;</th>
+                <td colspan="2" class="value noBd noPd">
+                    <small>
+                        <span class="inline-block">가자고에서는 고객님의 사전 동의 없이</span>
+                        <span class="inline-block">고객님의 개인정보를 절대로 제 3자에게</span>
+                        <span class="inline-block">제공하지 않습니다.</span>
+                    </small>
+                </td>
+            </tr>
+            <tr>
+                <td class="value" colspan="3">
+                    <div class="DH10"></div>
+                    <button type="button" class="ax-btn btn btn-danger btn-lg" id="btn-payUserInfo-save">구매자정보 저장하기</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</script>

@@ -14,8 +14,6 @@ const _wheelView = new WheelView($('#wheel-view'), {
 });
 
 
-
-
 $(function(){
     /** start page */
     _wheelView.display(true);
