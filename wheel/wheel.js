@@ -262,8 +262,11 @@ class Roulette {
                 // Draw outer circle
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, size, 0, PI2, false);
+                ctx.shadowColor = 'rgba(0,0,0,0.4)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetX = 15;
+                ctx.shadowOffsetY = 15;
                 ctx.closePath();
-
                 ctx.lineWidth = 2;
                 ctx.strokeStyle = '#000000';
                 ctx.stroke();
@@ -288,12 +291,22 @@ class Roulette {
 
         $.each(_this.config.data, function(key, item) {
              var tmpl = '<li>' +
-                            '<input type="checkbox" id="wheel-'+ key +'" name="'+item+'" value="'+item+'" checked>'+
-                            '<label for="wheel-'+key+'">'+item+'</label>'+
+                            // '<input type="checkbox" id="wheel-'+ key +'" name="'+item+'" value="'+item+'" checked>'+
+                            // '<label for="wheel-'+key+'">'+item+'</label>'+
+                            '<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="wheel-'+ key +'">'+
+                                '<input type="checkbox" id="wheel-'+ key +'" name="'+item+'" value="'+item+'" checked  class="mdl-checkbox__input">'+
+                                '<span class="mdl-checkbox__label">'+item+'</span>'+
+                            '</label>'+
                         '</li>';
             wheelListContainer.append(tmpl);
         });
-        $(wheelListContainer).find('input').change( function() {
+        $(wheelListContainer).find('label').bind("click",function(e){
+            if ($(wheelListContainer).find('input:checked').length < 4) {
+                e.preventDefault();
+                alert("4개 이상로 선택하세요~:D");
+            }
+        });
+        $(wheelListContainer).find('input').change( function(e) {
             _this.listChageEvent($(this)[0]);
         });
     }

@@ -13,18 +13,18 @@ const WheelView = function($el, config){
 
     /** wheel constorl */
     const wheelList = {
-        "1"  : "워터파크",
-        "2"   : "놀이동산",
-        "3"    : "테마파크",
-        "4"  : "아쿠아리움",
-        "5" : "유람선",
-        "6"  : "동물원",
-        "7"   : "수목원",
-        "8"  : "박물관",
-        "9"  : "패러글라이딩",
-        "10"  : "스키",
-        "11"   : "눈썰매",
-        "12"  : "이색체험",
+        "/groups/leisure?categoryIds=246%2C256"  : "워터파크",
+        "/groups/leisure?categoryIds=283%2C293"  : "놀이동산",
+        "/groups/leisure?categoryIds=283%2C284"  : "테마파크",
+        "/groups/leisure?categoryIds=283%2C302"  : "아쿠아리움",
+        "/groups/inland" : "유람선",
+        "/groups/leisure?categoryIds=283%2C311"  : "동물원",
+        "/groups/leisure?categoryIds=357%2C385"   : "수목원",
+        "/groups/leisure?categoryIds=357%2C394"  : "박물관",
+        "/groups/leisure?categoryIds=403%2C422"  : "패러글라이딩",
+        "/groups/leisure?categoryIds=403%2C1173"  : "스키",
+        "/groups/leisure?categoryIds=403%2C1197"   : "눈썰매",
+        "/groups/leisure?categoryIds=449%2C459"  : "이색체험",
         "13"   : "지역축제",
         "14"  : "전시",
         "15"    : "공연",
@@ -39,11 +39,11 @@ const WheelView = function($el, config){
         targetCanvas : $('#wheel #canvas').get(0),
         wheelClick : function () {
             _checkWheelStatus = false;
-            $("#wheelToMap").html('뭐가 될까요? 두근두근');
+            $("#wheelToMap h4").text('뭐가 될까요? 두근두근');
         },
         finished : function(idx) {
             _checkWheelStatus = true;
-            $("#wheelToMap").html(wheel.getSegments(idx) + ' 지도로 확인');
+            $("#wheelToMap h4").text(wheel.getSegments(idx) + '상품 보러가기');
         }
     }
 
@@ -55,7 +55,6 @@ const WheelView = function($el, config){
             if(_checkWheelStatus) {
                 //Fn();
             } else {
-
                 _this._wheel.wheel.spin();
             }
         });

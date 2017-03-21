@@ -341,12 +341,26 @@ ul.LBox		{ padding:0; border:0;}
 /** wheel **/
 #wheel-view {
     padding: 20px;
+    background: url(https://gajago-banner.imgix.net/promo-1212/20170315/pc-page-paragliding-bg.png) no-repeat center top;
+    background-size:cover;
+}
+#wheels {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.8);
 }
 #wheels li {
     display: inline-block;
     width: 50%;
-}
 
+}
+@media screen and (min-width: 480px ){
+    #wheels li {
+        width: 33.3333%;
+    }
+}
 #wheel {
     position: relative;
 }
@@ -354,9 +368,14 @@ ul.LBox		{ padding:0; border:0;}
     width: 100%;
     background: transparent;
 }
-
+.wheelToMap {
+    height: auto;
+    padding: 0.1em 0.5em 0.2em;
+}
 /* ax5modal */
 .ax5modal {
     border:0;
     border-radius:0 ;
 }
+
+
